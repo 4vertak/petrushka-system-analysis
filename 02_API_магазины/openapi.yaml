@@ -1,0 +1,113 @@
+openapi: '3.0.3'
+info:
+  title: API партнёрских магазинов Петрушка Зеленая
+  description: Методы для получения списка магазинов-партнёров
+  version: '1.0'
+servers:
+  - url: https://api.petrushka.ru/v1
+    description: Production
+paths:
+  /partners/stores/delivery-slots:
+    get:
+      summary: Получить магазины с ближайшими слотами доставки
+      description: Возвращает список доступных магазинов и время доставки для местоположения пользователя
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: latitude
+          in: query
+          required: false
+          schema:
+            type: number
+          description: Широта (если не указана, используется адрес из профиля)
+        - name: longitude
+          in: query
+          required: false
+          schema:
+            type: number
+          description: Долгота
+      responses:
+        '200':
+          description: Список магазинов (может быть пустым, если нет доступных)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stores:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Store'
+              examples:
+                withStores:
+                  value:
+                    stores:
+                      - storeId: "metro_001"
+                        name: "METRO"
+                        deliveryText: "Ближайшая доставка сегодня 21:00–23:00"
+                        externalLink: "https://metro.ru?ref=petrushka"
+                      - storeId: "ashan_001"
+                        name: "Ашан"
+                        deliveryText: "Ближайшая доставка сегодня 18:00–20:00"
+                        externalLink: "https://ashan.ru?ref=petrushka"
+                      - storeId: "vkusvill_001"
+                        name: "ВкусВилл"
+                        deliveryText: "Быстрая доставка от 20 до 60 минут"
+                        externalLink: "https://vkusvill.ru?ref=petrushka"
+                      - storeId: "victoria_001"
+                        name: "ВИКТОРИЯ"
+                        deliveryText: "Ближайшая доставка сегодня 17:00–19:00"
+                        externalLink: "https://victoria.ru?ref=petrushka"
+                empty:
+                  value:
+                    stores: []
+        '400':
+          description: Некорректные параметры запроса
+        '401':
+          description: Неавторизованный доступ
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Store:
+      type: object
+      required:
+        - storeId
+        - name
+        - deliveryText
+        - externalLink
+      properties:
+        storeId:
+          type: string
+          description: "Уникальный идентификатор магазина, включающий префикс сети"
+          example: "metro_001"
+        name:
+          type: string
+          example: "METRO"
+        deliveryText:
+          type: string
+          example: "Ближайшая доставка сегодня 21:00–23:00"
+        # Дополнительные структурированные поля (опционально)
+        deliveryType:
+          type: string
+          enum: [nearest, express]
+          example: "nearest"
+          description: "Тип доставки: ближайшая или быстрая"
+        deliveryDate:
+          type: string
+          format: date
+          example: "2026-05-07"
+        deliveryTimeFrom:
+          type: string
+          example: "21:00"
+        deliveryTimeTo:
+          type: string
+          example: "23:00"
+        externalLink:
+          type: string
+          format: uri
+          example: "https://metro.ru?ref=petrushka"
+    
