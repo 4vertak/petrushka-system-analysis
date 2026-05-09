@@ -4,25 +4,29 @@
       "storeId": "metro_001",
       "name": "METRO",
       "deliveryText": "Ближайшая доставка сегодня 21:00–23:00",
-      "externalLink": "https://metro.ru?ref=petrushka"
+      "externalLink": "https://metro.ru?ref=petrushka",
+      "logoUrl": "https://cdn.petrushka.ru/partners/logo_metro.png"
     },
     {
       "storeId": "ashan_001",
       "name": "Ашан",
       "deliveryText": "Ближайшая доставка сегодня 18:00–20:00",
-      "externalLink": "https://ashan.ru?ref=petrushka"
+      "externalLink": "https://ashan.ru?ref=petrushka",
+      "logoUrl": "https://cdn.petrushka.ru/partners/logo_ashan.png"
     },
     {
       "storeId": "vkusvill_001",
       "name": "ВкусВилл",
       "deliveryText": "Быстрая доставка от 20 до 60 минут",
-      "externalLink": "https://vkusvill.ru?ref=petrushka"
+      "externalLink": "https://vkusvill.ru?ref=petrushka",
+      "logoUrl": "https://cdn.petrushka.ru/partners/logo_vkusvill.png"
     },
     {
       "storeId": "victoria_001",
       "name": "ВИКТОРИЯ",
       "deliveryText": "Ближайшая доставка сегодня 17:00–19:00",
-      "externalLink": "https://victoria.ru?ref=petrushka"
+      "externalLink": "https://victoria.ru?ref=petrushka",
+      "logoUrl": "https://cdn.petrushka.ru/partners/logo_victoria.png"
     }
   ]
 }

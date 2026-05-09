@@ -58,6 +58,7 @@ GET /api/v1/partners/stores/delivery-slots?latitude=55.7558&longitude=37.6173
 | stores[].name | string | Название магазина |
 | stores[].deliveryText | string | Готовая строка с информацией о доставке для отображения |
 | stores[].externalLink | string | URL для перехода на внешний ресурс магазина |
+| stores[].logoUrl | string | URL на логотип магазина |
 
 ### Пример ответа: [example_response.json](./example_response.json)
 
